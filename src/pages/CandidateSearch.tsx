@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
 import CandidateCard from '../components/CandidateCard';
 
@@ -50,14 +49,14 @@ const CandidateSearch = () => {
   };
 
   if (candidates.length === 0) {
-    return <h2>No more candidates available</h2>;
+    return <h2 className="no-candidates-message">No more candidates available</h2>;
   }
 
   return (
-    <div>
+    <div className="candidate-search">
       <h1>Candidate Search</h1>
       <CandidateCard candidate={candidates[currentIndex]} />
-      <button onClick={saveCandidate}>+</button>
+      <button onClick={saveCandidate} >+</button>
       <button onClick={nextCandidate}>-</button>
     </div>
   );

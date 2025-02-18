@@ -12,19 +12,21 @@ const SavedCandidates = () => {
       setSavedCandidates(parsedData);
     } catch (error) {
       console.error("Error parsing saved candidates from localStorage:", error);
-      setSavedCandidates([]);
+      setSavedCandidates([]); // Prevent breaking UI
     }
   }, []);
 
   return (
-    <div>
+    <div className="saved-candidates">
       <h1>Potential Candidates</h1>
       {savedCandidates.length === 0 ? (
-        <h2>No candidates have been accepted</h2>
+        <h2 className="no-candidates-message">No candidates have been accepted</h2>
       ) : (
-        savedCandidates.map((candidate) => (
-          <CandidateCard key={candidate.id} candidate={candidate} />
-        ))
+        <div className="candidates-list">
+          {savedCandidates.map((candidate) => (
+            <CandidateCard key={candidate.id} candidate={candidate} />
+          ))}
+        </div>
       )}
     </div>
   );
